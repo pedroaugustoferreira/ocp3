@@ -64,12 +64,12 @@ openshift_install_examples=True
 
 # Registry
 #openshift_hosted_manage_registry=false
-openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
-openshift_hosted_registry_replicas=1
-openshift_hosted_registry_storage_kind=vsphere
-openshift_hosted_registry_storage_access_modes=['ReadWriteOnce']
-openshift_hosted_registry_storage_annotations=['volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume']
-openshift_hosted_registry_storage_volume_size=20Gi
+#openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
+#openshift_hosted_registry_replicas=1
+#openshift_hosted_registry_storage_kind=vsphere
+#openshift_hosted_registry_storage_access_modes=['ReadWriteOnce']
+#openshift_hosted_registry_storage_annotations=['volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume']
+#openshift_hosted_registry_storage_volume_size=20Gi
 ###
 
 
