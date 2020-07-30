@@ -1,0 +1,16 @@
+export DOMAIN=sascar.com.br
+export CL_NAME=ocp3
+export NODE_MASTER=master01-ocp3
+export NODE_INFRA=infra01-ocp3
+export NODE_WORKER=worker01-ocp3
+
+# CLONE
+export TEMPLATE=LAB-PD-rhel-template
+export DS=LAB_Local_Raid5
+export NET="VM Network"
+export FOLDER="ocp3"
+export ESXI_HOST=192.168.100.101
+
+
+export CL_DOMAIN="$CL_NAME.$DOMAIN"
+export NODE_ALL="$NODE_MASTER,$NODE_WORKER,$NODE_BOOTSTRAP,$NODE_INFRA"

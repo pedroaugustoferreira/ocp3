@@ -1,0 +1,2 @@
++ govc vm.clone -ds LAB_Local_Raid5 -net 'VM Network' -folder ocp3 -on=false -host 192.168.100.101 -vm LAB-PD-rhel-template master01-ocp3
++ govc vm.clone -ds LAB_Local_Raid5 -net 'VM Network' -folder ocp3 -on=false -host 192.168.100.101 -vm LAB-PD-rhel-template worker01-ocp3
