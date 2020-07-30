@@ -54,7 +54,7 @@ openshift_portal_net=172.30.0.0/16
 osm_cluster_network_cidr=10.128.0.0/14
 osm_host_subnet_length=9
 # Master API and Console Ports
-openshift_master_api_port=8443
+openshift_master_api_port=3443
 openshift_master_console_port=8443
 ###
 
