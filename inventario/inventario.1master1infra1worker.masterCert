@@ -1,0 +1,113 @@
+
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-monitoring/config.yml 
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/metrics-server/config.yml 
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
+
+# Create an OSEv3 group that contains the masters, nodes, and etcd groups
+[OSEv3:children]
+masters
+nodes
+etcd
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+oreg_auth_user=6583642|ocp3
+oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJkMzViODM3MTIyZDI0YzYwOTYyY2MwYzdiYWY0OTA3NSJ9.sUWRDHCIThLZavzfZRkFOfSNfcvUmuDvFjoa-T_FKuBu24W8SxWFwHUbQiHY78eX8sA3ayoIX-xo6JXxlFm0S9xRtHJ9gqcYgaDkZaE9uDSaa7UDkEqnkRBVeR2Tw8DwzCC3HbRZTwsNvcXxvNQd0TQWM1kuWgK2VtRoRilBY77MFy7jpJ6yY8_q6COsYk6GwfSt27wpNLotd8PUynRkxYW_gFQuaPZ6zPn05BypEGaHjZnXduEMU5qhx1ovfqGd9X31S_8JE9rYTObdwjX_97AFnzTUlCVqBnVafXRaaRw3rSEAxjDq_e3pxPd1BypdiG2moG-AUHDP6-w590OVn3RlqVHyppHiiNYqUAU6V_A5mDD5f1SdAuXQgd2I6axMT87UoaQrPFk-owaaoU4daBm55enAn492zVWArkLsFB-aPk96K-prP7G5oP1PBCopQI-udVfeJppwIXIEA2mEIiQ6K3zd_9gcv2GXa5tbtv1IyhE3SUrLq1TyrDmZd1F0-BQ345B1mEGC0hH3-KuNyT2dmV3F2l8v6k7Xbf_h9t0QDg5j_QDC7E9BrMpm11ELN9gg4dfl6MFPWlzxd0TmNWrw1vsFwwHkas-FUSSWJj8kvKGjC9IACztHrXyuvixQ5PTConA8lf3PCvI-uDiCBTtHxcrAabXtVlpM5UZbfMA"
+
+# Master Cert
+openshift_master_overwrite_named_certificates=true
+openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["opc.sascar.com.br"]}]
+openshift_additional_ca=/root/cert/chain.crt
+
+# Master Cert
+openshift_master_overwrite_named_certificates=true 
+openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["app.sascar.com.br"], "cafile": "/root/cert/chain.crt"}]
+#openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "/root/cert/sascar.com.br.2017.key", "names": ["opc-dev.sascar.com.br"]}] 
+#openshift_additional_ca=/root/cert/chain.crt
+
+
+# Storage persistente - VMWARE
+openshift_cloudprovider_kind=vsphere
+openshift_cloudprovider_vsphere_username=administrator@vsphere.local
+openshift_cloudprovider_vsphere_password=Service@123
+openshift_cloudprovider_vsphere_host=192.168.100.102
+openshift_cloudprovider_vsphere_datacenter=LAB-CWB-DC
+openshift_cloudprovider_vsphere_datastore=LAB_Local_Raid5
+
+# Deployment type
+openshift_deployment_type=openshift-enterprise
+# Connection user
+ansible_user=root
+# Debug
+debug_level=4
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=root
+# If ansible_ssh_user is not root, ansible_become must be set to true
+ansible_become=true
+
+### Network ###
+# Domain
+openshift_master_default_subdomain=app.sascar.com.br
+openshift_master_cluster_hostname=api.sascar.com.br
+openshift_master_cluster_public_hostname=api.sascar.com.br
+
+
+
+# HA
+openshift_master_cluster_method=native
+# Firewall
+os_firewall_use_firewalld=True
+# SDN
+#os_sdn_network_plugin_name=redhat/openshift-ovs-subnet
+os_sdn_network_plugin_name=redhat/openshift-ovs-multitenant
+openshift_portal_net=172.30.0.0/16
+osm_cluster_network_cidr=10.128.0.0/14
+osm_host_subnet_length=9
+# Master API and Console Ports
+openshift_master_api_port=443
+openshift_master_console_port=443
+###
+
+# Examples (imagestreams and templates)
+openshift_install_examples=True
+
+
+# Registry
+#openshift_hosted_manage_registry=false
+#openshift_hosted_registry_selector='node-role.kubernetes.io/infra=true'
+#openshift_hosted_registry_replicas=1
+#openshift_hosted_registry_storage_kind=vsphere
+#openshift_hosted_registry_storage_access_modes=['ReadWriteOnce']
+#openshift_hosted_registry_storage_annotations=['volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume']
+#openshift_hosted_registry_storage_volume_size=20Gi
+###
+
+
+
+[nodes:vars]
+openshift_disable_check=disk_availability,memory_availability,docker_storage
+[masters:vars]
+openshift_disable_check=disk_availability,memory_availability,docker_storage
+# uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50'}
+
+
+
+
+# host group for masters
+[masters]
+192.168.100.174
+
+# host group for etcd
+[etcd]
+192.168.100.174
+
+# host group for nodes, includes region info
+[nodes]
+192.168.100.174  openshift_node_group_name='node-config-master'
+192.168.100.173  openshift_node_group_name='node-config-compute'
+192.168.100.172  openshift_node_group_name='node-config-infra'
+
