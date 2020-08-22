@@ -7,10 +7,11 @@ start()
 set -x
 for i in $(echo $NODE_ALL|tr -s ','  '\n');
 do
-	echo $vm
-	govc snapshot.create -m=false -vm $i original2
+	echo $i
+        govc vm.power -off $i
 done
 }
 
 start 2>&1 |egrep -v "for|start|grep|env|cut|echo|\+\+|sed"
+
 
