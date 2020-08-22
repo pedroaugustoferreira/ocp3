@@ -19,8 +19,6 @@ oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJkMzViODM3MTIyZDI0YzYwOTYyY2M
 # Master Cert
 openshift_master_overwrite_named_certificates=true 
 openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["app.sascar.com.br"], "cafile": "/root/cert/chain.crt"}]
-#openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "/root/cert/sascar.com.br.2017.key", "names": ["opc-dev.sascar.com.br"]}] 
-#openshift_additional_ca=/root/cert/chain.crt
 
 
 # Storage persistente - VMWARE

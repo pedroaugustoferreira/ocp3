@@ -18,15 +18,8 @@ oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJkMzViODM3MTIyZDI0YzYwOTYyY2M
 
 # Master Cert
 openshift_master_overwrite_named_certificates=true
-openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["opc.sascar.com.br"]}]
-openshift_additional_ca=/root/cert/chain.crt
-
-# Master Cert
-openshift_master_overwrite_named_certificates=true 
-openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["app.sascar.com.br"], "cafile": "/root/cert/chain.crt"}]
-#openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "/root/cert/sascar.com.br.2017.key", "names": ["opc-dev.sascar.com.br"]}] 
-#openshift_additional_ca=/root/cert/chain.crt
-
+openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2020-2022.crt", "keyfile": "/root/cert/sascar.com.br.2020-2022.key", "names": ["*.sascar.com.br"]}]
+openshift_additional_ca=/root/cert/root_ca.sascar.com.br.2020-2022.crt
 
 # Storage persistente - VMWARE
 openshift_cloudprovider_kind=vsphere

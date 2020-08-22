@@ -8,7 +8,7 @@ set -x
 for i in $(echo $NODE_ALL|tr -s ','  '\n');
 do
 	echo $vm
-	govc snapshot.remove -vm $i original
+	govc snapshot.remove -vm $i '*'
 done
 }
 
