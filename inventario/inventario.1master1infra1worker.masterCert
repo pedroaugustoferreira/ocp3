@@ -17,6 +17,11 @@ oreg_auth_user=6583642|ocp3
 oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJkMzViODM3MTIyZDI0YzYwOTYyY2MwYzdiYWY0OTA3NSJ9.sUWRDHCIThLZavzfZRkFOfSNfcvUmuDvFjoa-T_FKuBu24W8SxWFwHUbQiHY78eX8sA3ayoIX-xo6JXxlFm0S9xRtHJ9gqcYgaDkZaE9uDSaa7UDkEqnkRBVeR2Tw8DwzCC3HbRZTwsNvcXxvNQd0TQWM1kuWgK2VtRoRilBY77MFy7jpJ6yY8_q6COsYk6GwfSt27wpNLotd8PUynRkxYW_gFQuaPZ6zPn05BypEGaHjZnXduEMU5qhx1ovfqGd9X31S_8JE9rYTObdwjX_97AFnzTUlCVqBnVafXRaaRw3rSEAxjDq_e3pxPd1BypdiG2moG-AUHDP6-w590OVn3RlqVHyppHiiNYqUAU6V_A5mDD5f1SdAuXQgd2I6axMT87UoaQrPFk-owaaoU4daBm55enAn492zVWArkLsFB-aPk96K-prP7G5oP1PBCopQI-udVfeJppwIXIEA2mEIiQ6K3zd_9gcv2GXa5tbtv1IyhE3SUrLq1TyrDmZd1F0-BQ345B1mEGC0hH3-KuNyT2dmV3F2l8v6k7Xbf_h9t0QDg5j_QDC7E9BrMpm11ELN9gg4dfl6MFPWlzxd0TmNWrw1vsFwwHkas-FUSSWJj8kvKGjC9IACztHrXyuvixQ5PTConA8lf3PCvI-uDiCBTtHxcrAabXtVlpM5UZbfMA"
 
 # Master Cert
+openshift_master_overwrite_named_certificates=true
+openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["opc.sascar.com.br"]}]
+openshift_additional_ca=/root/cert/chain.crt
+
+# Master Cert
 openshift_master_overwrite_named_certificates=true 
 openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "keyfile": "/root/cert/sascar.com.br.2017.key", "names": ["app.sascar.com.br"], "cafile": "/root/cert/chain.crt"}]
 #openshift_master_named_certificates=[{"certfile": "/root/cert/sascar.com.br.2017.crt", "/root/cert/sascar.com.br.2017.key", "names": ["opc-dev.sascar.com.br"]}] 

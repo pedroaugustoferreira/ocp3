@@ -1,0 +1,5 @@
+oc adm policy add-cluster-role-to-user cluster-admin pedro 
+
+cat /etc/origin/master/master-config.yaml
+
+
