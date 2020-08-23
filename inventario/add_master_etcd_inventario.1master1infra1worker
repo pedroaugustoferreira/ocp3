@@ -10,8 +10,6 @@
 masters
 nodes
 etcd
-new_nodes
-new_masters
 new_etcd
 
 
@@ -87,18 +85,13 @@ openshift_disable_check=disk_availability,memory_availability,docker_storage
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
 openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50'}
 
-[new_masters]
-192.168.100.175 openshift_node_group_name='node-config-master'
-
-[new_nodes]
-192.168.100.175 openshift_node_group_name='node-config-master'
-
 [new_etcd]
 192.168.100.175 openshift_node_group_name='node-config-master'
 
 # host group for masters
 [masters]
 192.168.100.174 openshift_node_group_name='node-config-master'
+192.168.100.175 openshift_node_group_name='node-config-master'
 
 # host group for etcd
 [etcd]
@@ -106,6 +99,7 @@ openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50
 
 # host group for nodes, includes region info
 [nodes]
+192.168.100.175  openshift_node_group_name='node-config-master'
 192.168.100.174  openshift_node_group_name='node-config-master'
 192.168.100.173  openshift_node_group_name='node-config-compute'
 192.168.100.172  openshift_node_group_name='node-config-infra'

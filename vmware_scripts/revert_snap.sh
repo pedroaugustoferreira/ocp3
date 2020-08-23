@@ -8,7 +8,7 @@ set -x
 for i in $(echo $NODE_ALL|tr -s ','  '\n');
 do
 	echo $i
-	govc snapshot.revert -vm $i original &
+	govc snapshot.revert -vm $i original2 &
 done
 
 }

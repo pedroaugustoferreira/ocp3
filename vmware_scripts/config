@@ -5,7 +5,7 @@ export GOVC_INSECURE=1
 
 export DOMAIN=sascar.com.br
 export CL_NAME=ocp3
-export NODE_MASTER=master01-ocp3
+export NODE_MASTER=master01-ocp3,master02-ocp3
 export NODE_INFRA=infra01-ocp3
 export NODE_WORKER=worker01-ocp3
 
