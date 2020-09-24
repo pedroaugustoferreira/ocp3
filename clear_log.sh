@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# curl -s https://raw.githubusercontent.com/pedroaugustoferreira/ocp3/master/clear_log.sh | bash -s --
+
 cat > /usr/local/bin/clear_json_log.sh << EOF
 #! /bin/bash
 ls  /var/lib/docker/containers/*/*-json.log | awk '{print "> "$0}'|sh 
