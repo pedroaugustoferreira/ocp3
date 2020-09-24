@@ -4,7 +4,7 @@
 
 cat > /usr/local/bin/clear_json_log.sh << EOF
 #! /bin/bash
-ls  /var/lib/docker/containers/*/*-json.log | awk '{print "> "$0}'|sh 
+ls  /var/lib/docker/containers/*/*-json.log | awk '{print "> "\$0}'|sh 
 EOF
 
 chmod +x /usr/local/bin/clear_json_log.sh
